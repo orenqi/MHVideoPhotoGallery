@@ -62,6 +62,11 @@ UIImage *MHDefaultImageForFrame(CGRect frame){
 }
 
 UIView *MHStatusBar(void){
+    if (@available(iOS 13.0, *)) {
+        //TODO: Terminating app due to uncaught exception 'NSInternalInconsistencyException', reason: 'App called -statusBar or -statusBarWindow on UIApplication: this code must be changed as there's no longer a status bar or status bar window. Use the statusBarManager object on the window scene instead.'
+        return nil;
+    }
+    
     NSString *key = [NSString.alloc initWithData:[NSData dataWithBytes:(unsigned char []){0x73, 0x74, 0x61, 0x74, 0x75, 0x73, 0x42, 0x61, 0x72} length:9] encoding:NSASCIIStringEncoding];
     id object = UIApplication.sharedApplication;
     UIView *statusBar;
